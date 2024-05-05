@@ -1,0 +1,69 @@
+.collapsable {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.collapsable p {
+    font-size: 17px;
+}
+
+.collapsable-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
+
+.collapsable-title{
+    text-align: center;
+    width: 100%;
+    font-size: 23px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-right: 1px solid var(--dark-alice-blue);
+}
+
+.collapsable-content{
+    padding-left: 20px;
+    padding-right: 20px;
+    display:grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 600ms ease-out;
+    border-top: 1px solid var(--dark-alice-blue)
+}
+
+.collapsable-content > div {
+    overflow: hidden;
+}
+
+.collapsable-content.visible{
+    grid-template-rows: 1fr;
+}
+
+.collapsable-content button{
+    
+    
+}
+
+.collapsable-icon{
+    background-color: #ffffff00;
+    border: none;
+    
+    font-family: "josefinSans";
+    font-size: 40px;
+    margin-right: 15px;
+    margin-left: 15px;
+    border-radius: 25px;
+    transition: transform 600ms ease-out; /* Add the transition property here */
+}
+
+.collapsable-icon.visible{
+    transform: rotate(135deg);
+}

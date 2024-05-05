@@ -1,0 +1,61 @@
+:root {
+  --flax: #EBDE8Eff;
+  --white: #FFFFFFff;
+  --indigo-dye: #25446Bff;
+  --paynes-gray: #516989ff;
+  --alabaster: #F9f9f9ff;
+  --alice-blue: #F0F8FFff;
+  --dark-alice-blue: #DDE4EBff;
+}
+
+@font-face {
+  font-family: 'JosefinSans';
+  src: url('/src/resources/fonts/josefin-sans/JosefinSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JosefinSans';
+  src: url('/src/resources/fonts/josefin-sans/JosefinSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JosefinSans';
+  src: url('/src/resources/fonts/josefin-sans/JosefinSans-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'JosefinSans';
+  src: url('/src/resources/fonts/josefin-sans/JosefinSans-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+body {
+  background-color: var(--alice-blue);
+  margin: 0;
+  font-family: 'JosefinSans','Poppins', sans-serif !important;
+  /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;*/
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.index-error-message{
+  color: red;
+}
+
+.index-success-message{
+  color:green;
+}

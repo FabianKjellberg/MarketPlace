@@ -1,0 +1,14 @@
+.faq-forms {
+    position: relative;
+    left: 10%;
+    width: 80%;
+}
+
+@media only screen and (max-width: 765px){
+
+    .faq-forms{
+        
+        left: 0%;
+        width: auto;
+    }
+}

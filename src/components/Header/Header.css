@@ -1,0 +1,143 @@
+.header {
+    background-color: var(--indigo-dye);
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: flex-end; /* Align children to the right */
+}
+
+.logo-name{
+   
+    width:160px;
+    height: 160px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header-line {
+    border-top: 1px solid var(--paynes-gray);
+    width: 70%;
+}
+
+.header-top {
+    display: flex;
+}
+
+.header-bottom {
+    display: flex;  
+}
+
+.header-top a {
+    font-size: 15px;
+    color: var(--white);
+    padding: 10px;
+    text-decoration: none;
+}
+
+.header-top a:hover {
+    color: var(--paynes-gray);
+}
+
+.header-bottom a {
+    font-size: 17px;
+    color: var(--white);
+    margin-top: 30px;
+    padding-bottom: 30px;
+    margin-right: 20px;
+    text-decoration: none;
+    border-bottom: 3px solid var(--indigo-dye);
+}
+.header-bottom a:hover {
+    color: var(--flax);
+    border-bottom: 3px solid var(--flax);
+}
+.header-bottom button{
+    background-color: var(--flax);
+    color: var(--indigo-dye);
+    width: 150px;
+    height: 50px;
+    margin-right: 20px;
+    align-self: center;
+    border: 1px solid var(--flax);
+    border-radius: 40px;
+    font-size: 17px;
+    font-family: 'JosefinSans';
+    font-weight: bold;
+}
+
+.header-bottom button:hover{
+    background-color: var(--indigo-dye);
+    color: var(--flax);
+}
+
+
+
+.header-logo{
+    position: absolute;
+    z-index: 5;
+    top:10px;
+    left:10px;
+    
+}
+
+.header-logo img{
+    width: 180px;
+    height: 180px;
+}
+
+.header-burger{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--indigo-dye);
+    
+}
+
+@media only screen and (max-width: 765px) {
+    .header-top {
+        display: flex;
+        flex-direction: column; /* Stack children vertically */
+        align-items: flex-end;
+        
+    }
+
+    .header-top a {
+        padding-right: 0px;
+        
+    }
+    
+    .header-bottom {
+        display: flex; 
+        flex-direction: column; /* Stack children vertically */
+        align-items: flex-end; 
+    }
+
+    .header-logo{
+        position: absolute;
+        z-index: 5;
+        top:7px;
+        left:7px;
+    }
+    
+
+    .header-bottom a {
+        border-bottom: none;
+        text-align: end;
+        margin-right: 0px;
+    }
+
+    .header-bottom a:hover {
+        border-bottom: none;
+    }
+
+    .logo-name{
+        padding-top: 17px;
+        width:180px;
+        position: absolute;
+        left:75px;
+        padding-left: 0px;
+        
+        
+    }
+
+  }

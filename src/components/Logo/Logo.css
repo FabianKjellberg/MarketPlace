@@ -1,0 +1,10 @@
+.logo {
+    
+}
+
+.logo img{
+    height: 180px;
+    width: 180px;
+    background-color: var(--indigo-dye);
+    border-radius: 90px;
+}
