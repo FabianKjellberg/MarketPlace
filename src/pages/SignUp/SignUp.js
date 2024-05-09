@@ -2,6 +2,7 @@ import './SignUp.css';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import UserPool from '../../utilities/UserPool.js';
+import AccountRegistrationManager from '../../utilities/AccountRegistrationManager';
 
 function SignUp() {
   
@@ -9,11 +10,13 @@ function SignUp() {
   
   const [errorMessage, setErrorMessage] = useState("");
   const [showError, setShowError] = useState(false);
+  const accountRegistrationManager = new AccountRegistrationManager("http://localhost:8080");
 
   const [formData, setFormData] = useState({
+    username:'',
     email:'',
     password:'',
-    repeatPassword:''
+    repeatPassword:'',
   });
 
   const handleChange = ((e) => {
@@ -24,28 +27,26 @@ function SignUp() {
   const handleSubmit = ((event) => {
       event.preventDefault();
 
-      
-
       if(formData.password === formData.repeatPassword && formData !== ""){
-        
-        UserPool.signUp(formData.email, formData.password, [], null, (err, data) => {
-          if(err){
-            setErrorMessage(err.message)
-            setShowError(true)
-
-            console.log(err)
-          }else{
-            navigate(`/userconfirmation?userid=${data.user.username}`)
-          }
-        })
+        if(checkPasswordStrength(formData.password)){
+            accountRegistrationManager.registerAccount(formData);
+        } 
+        else{
+          setErrorMessage("password is too weak");
+          setShowError(true)
+        }       
       }else{
         setErrorMessage("passwords not matching");
         setShowError(true)
       }
-        
-      
-      
-      
+  
+    function checkPasswordStrength(password){
+      console.log(password.length);
+      if(password.length >= 8) {
+        return true
+      }
+      else return false
+    }
   });
 
   return (
@@ -58,6 +59,16 @@ function SignUp() {
             <p>Start bidding on items today.</p>
           </div>
           <form className="signup-form" onSubmit={handleSubmit}>
+          <label className='signup-labels'>
+              <p>User Name</p>
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
+            </label>
             <label className='signup-labels'>
               <p>Email</p>
               <input

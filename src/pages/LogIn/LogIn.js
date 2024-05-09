@@ -1,13 +1,13 @@
 import './LogIn.css';
 import { useState } from 'react';
 import { useNavigate , useLocation} from 'react-router-dom';
-import { CognitoUser, AuthenticationDetails,} from 'amazon-cognito-identity-js';
-import UserPool from '../../utilities/UserPool';
+import AuthenticationManager from '../../utilities/AuthenticationManager.js';
 
 function LogIn() {
   
   const location = useLocation();
   const loginEmail = new URLSearchParams(location.search).get('userid');
+  const authenticationManager = new AuthenticationManager("http://localhost:8080");
 
   const navigate = useNavigate();
   
@@ -38,42 +38,8 @@ function LogIn() {
   });
 
   const handleSubmit = ((event) =>{
-    event.preventDefault();
-    
-    var authenticationData = {
-      Username : formData.email,
-      Password : formData.password,
-  };
-  var authenticationDetails = new AuthenticationDetails(authenticationData);
-  
-  var userPool = UserPool;
-  var userData = {
-      Username : formData.email,
-      Pool : userPool
-  };
-  var cognitoUser = new CognitoUser(userData);
-  cognitoUser.authenticateUser(authenticationDetails, {
-      onSuccess: function (result) {
-          
-        const accessToken = result.getAccessToken().getJwtToken();
-        const idToken = result.idToken.jwtToken;
-
-        console.log(accessToken);
-        console.log(idToken);
-        
-        document.cookie = `access_token=${accessToken}; Secure;`;
-        document.cookie = `id_token=${idToken}; Secure;`;
-
-        
-      },
-
-      onFailure: function(err) {
-          handleError(err);
-      },
-
+    authenticationManager.Authenticate(formData)
   });
-})
-
   
   return (
     <>
