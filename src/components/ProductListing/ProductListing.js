@@ -8,7 +8,7 @@ function ProductListing(props) {
     const [product, setProduct] = useState(props.product)
     const [inShoppingCart, setInshoppingCart] = useState(props.inShoppingCart);
 
-    const { addItem, removeItem} = useCart();
+    const { addItem, removeItem } = useCart();
 
     function buttonClick(){
         

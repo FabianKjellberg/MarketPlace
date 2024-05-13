@@ -30,6 +30,7 @@ function SignUp() {
       if(formData.password === formData.repeatPassword && formData !== ""){
         if(checkPasswordStrength(formData.password)){
             accountRegistrationManager.registerAccount(formData);
+            navigate(`/login?userid=${formData.email}`)
         } 
         else{
           setErrorMessage("password is too weak");

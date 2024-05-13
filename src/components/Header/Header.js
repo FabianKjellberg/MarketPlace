@@ -1,6 +1,6 @@
 import './Header.css'
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import RoundButton from "../RoundButton/RoundButton.js";
 import Burger from '../Burger/Burger.js'
 import logo from '../../resources/images/marketplace_logo.png'
@@ -26,7 +26,8 @@ function Header() {
                     </div>
                     <div className='header-line'/>
                     <div className="header-bottom">
-                        <Link to="shoppingcart">Shopping Cart ({itemCount})</Link>
+                        <NavLink to="/" className={({ isActive }) => isActive ? "active-link" : ""} >Current Listings </NavLink>
+                        <NavLink to="shoppingcart" className={({ isActive }) => isActive ? "active-link" : ""} >Shopping Cart ({itemCount})</NavLink>
                         <RoundButton 
                             text={"Sell Now"}
                         />

@@ -17,11 +17,16 @@ export const CartProvider = ({ children }) => {
 
   const itemCount = items.length;
 
+  const totalCost = items.reduce((total, item) => {
+    return total + item.price;
+  }, 0);
+
   const value = {
     items,
     addItem,
     removeItem,
-    itemCount
+    itemCount,
+    totalCost
   };
 
   return (

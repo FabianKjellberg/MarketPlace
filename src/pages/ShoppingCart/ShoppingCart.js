@@ -6,12 +6,18 @@ import { useNavigate } from 'react-router-dom';
 
 function ShoppingCart() {
 
-  const { items, itemCount } = useCart();
+  const { items, itemCount, totalCost } = useCart();
   let navigate = useNavigate();
 
   return (
     <>
+        {/*-- HEADER --*/}
+        <div className='shopping-cart-header'>
+            <h1>SHOPPING CART</h1>
+        </div>
+        {/*-- MAIN --*/}
         <div className='shopping-cart'>
+            {/*-- when the shopping cart is empty --*/}
             {(itemCount === 0) && (
             <>
                 <div className='empty-cart'>
@@ -19,7 +25,8 @@ function ShoppingCart() {
                     <button onClick={() => navigate('/')}>Go to current listings</button>
                 </div> 
             </>
-        )}
+            )}
+
             <div className='homepage-listing-wrapper'>
                 <div className='homepage-listings'>
                     {items.map((item, index) => (
@@ -27,6 +34,13 @@ function ShoppingCart() {
                 ))}
                 </div>
             </div>
+            {(itemCount > 0) && (
+            <>
+                <div className='shopping-cart-make-offer'>
+                    <button>Make Offer <b>(Total price: {totalCost.toFixed(2)})</b></button>
+                </div>
+            </>
+            )}
         </div>
     </>
   );

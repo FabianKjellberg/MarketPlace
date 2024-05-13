@@ -7,11 +7,10 @@
 
 .logo-name{
    
-    width:160px;
-    height: 160px;
+    width:95px;
+    height: 95px;
     padding-left: 10px;
     padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 .header-line {
@@ -50,6 +49,10 @@
 .header-bottom a:hover {
     color: var(--flax);
     border-bottom: 3px solid var(--flax);
+}
+.active-link {
+    color: var(--flax) !important;
+    border-bottom: 3px solid var(--flax) !important;
 }
 .header-bottom button{
     background-color: var(--flax);
@@ -131,13 +134,18 @@
     }
 
     .logo-name{
-        padding-top: 17px;
-        width:180px;
+        width:60px;
+        height: 60px;
         position: absolute;
-        left:75px;
+        left:10px;
         padding-left: 0px;
         
         
+    }
+
+    .active-link {
+        color: var(--flax) !important;
+        border-bottom: none !important;
     }
 
   }

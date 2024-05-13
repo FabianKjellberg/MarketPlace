@@ -4,7 +4,6 @@ class AccountRegistrationManager {
     }
 
     registerAccount(userDetails) {
-        console.log("HEJ")
         
         return fetch(`${this.apiUrl}/auth/addNewUser`, {
             method: 'POST',
