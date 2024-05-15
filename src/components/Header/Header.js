@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import RoundButton from "../RoundButton/RoundButton.js";
 import Burger from '../Burger/Burger.js'
 import logo from '../../resources/images/marketplace_logo.png'
+import SearchBar from '../SearchBar/SearchBar.js';
 import { useCart } from '../../utilities/CartProvider';
 
 function Header() {
@@ -16,8 +17,8 @@ function Header() {
         
         <div className="header-burger">
         <Link to="/"><img className="logo-name" src={logo}></img></Link>
+        <SearchBar data={[]} /> 
             <Burger >
-                
                 <div className='header'>
                     <div className="header-top">
                         <Link to="signup"><a>Sign Up</a></Link>
