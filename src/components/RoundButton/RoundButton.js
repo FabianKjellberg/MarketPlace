@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthentication } from "../../utilities/AuthenticationProvider";
 
 function RoundButton(props) {
     
     const [text] = useState(props.text);
     const [nav] = useState(props.nav);
+
+    const { loggedIn } = useAuthentication();
     
-    useEffect(()=>{
-      
-    },[nav]);
-    
-  
     let navigate = useNavigate();
 
     const btnNavigate = () => {
-      navigate(nav);
+      if(!loggedIn) navigate(`/login?redirect=${nav}`)
+      else navigate(nav);
     }
 
     return (

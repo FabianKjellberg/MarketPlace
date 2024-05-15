@@ -1,6 +1,5 @@
 
 .homepage-listings{
-    
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start; 
@@ -14,24 +13,3 @@
     margin-top: 50px;
 }
 
-
-
-@media only screen and (max-width: 765px) {
-    .homepage-carousel-objects{
-        position: relative;
-        z-index: 100;
-        top: none;
-        transform: translateY(0);
-        left: 0;
-        padding: 0;
-        background-color: #FFFFFF80;
-        margin-right: 0;
-        padding-bottom: 30px;
-        height: 200px;
-    }
-
-    .category-title p {
-        font-size: 45px;
-    }
-    
-}

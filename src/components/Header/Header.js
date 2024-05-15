@@ -11,11 +11,7 @@ function Header() {
   
     const { itemCount } = useCart();
     const { loggedIn, logIn, logOut } = useAuthentication();
-    const [nav, setNav] = useState(loggedIn ? '/sellproduct' : '/login?redirect=sellproduct')
-
-    useEffect(() => {
-        setNav(loggedIn ? '/sellproduct' : '/login?redirect=sellproduct');
-    }, [loggedIn]);
+    const [nav, setNav] = useState('/sellproduct')
         
     return (
     <>

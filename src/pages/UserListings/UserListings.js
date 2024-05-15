@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ProductListing from "../../components/ProductListing/ProductListing";
+import './UserListings.css'
 
 function UserListings() {
   
@@ -13,15 +14,14 @@ function UserListings() {
       ]);
     
       const removeProduct = (productId) => {
-        console.log(ownProducts[0])
         setProducts(ownProducts.filter(product => product.id !== productId));
       };
 
     return (
       <>
         <div className='profile-user-listings'>
+            <h1>My Listings</h1>
             <div className='profile-my-listings'>
-              <h1>My Listings</h1>
               {ownProducts.map((product) => (
                 <ProductListing 
                   key={product.id}

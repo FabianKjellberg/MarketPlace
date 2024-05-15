@@ -44,7 +44,7 @@ function LogIn() {
     console.log(redirect + "Hej")
     
     authenticationManager.Authenticate(formData)
-    logIn()
+    logIn(formData.email)
     
     navigate(redirect ? `/${redirect}` :  '/' )
   });

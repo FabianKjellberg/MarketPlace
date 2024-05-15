@@ -5,15 +5,25 @@ const AuthenticationContext = createContext();
 export const useAuthentication = () => useContext(AuthenticationContext);
 
 export const AuthenticationProvider = ({ children }) => {
-    const [loggedIn, setLoggedIn] = useState(false);
+    
+  const[userName, setUserName] = useState("NULLLLLL")
 
-    const logIn = () => setLoggedIn(true);
-    const logOut = () => setLoggedIn(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+    const logIn = (userName) => {
+      setLoggedIn(true);
+      setUserName(userName);
+    }
+    const logOut = () => {
+      setLoggedIn(false);
+      setUserName("NULLLLLL")
+    }
 
   const value = {
     loggedIn,
     logIn,
     logOut,
+    userName,
   };
 
   return (

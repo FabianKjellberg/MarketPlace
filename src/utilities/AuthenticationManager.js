@@ -7,7 +7,7 @@ class AuthenticationManager {
     }
 
     Authenticate(userDetails) {
-        return fetch(`${this.apiUrl}/auth/addNewUser`, {
+        return fetch(`${this.apiUrl}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
