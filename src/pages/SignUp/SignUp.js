@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import UserPool from '../../utilities/UserPool.js';
 import AccountRegistrationManager from '../../utilities/AccountRegistrationManager';
+import ProductListing from '../../components/ProductListing/ProductListing';
 
 function SignUp() {
   
@@ -53,7 +54,6 @@ function SignUp() {
   return (
     <>
       <div className='signup'>
-      
         <div className='signup-window'>
           <div className='signup-greeting'>
             <h2>Sign up and start bidding today!</h2>
@@ -120,7 +120,7 @@ function SignUp() {
             </div>
             </form>
         </div>
-      
+              
       </div>
     </>
   );

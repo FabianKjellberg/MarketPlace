@@ -7,6 +7,9 @@
 .product-listing-frame h1 {
     font-size: 1.5rem; 
     text-align: center; 
+    padding-top:20px;
+    margin: 0px !important;
+    margin-bottom: 20px !important;
 }
 
 .product-listing-price-button{
@@ -32,4 +35,26 @@
     background-color: var(--indigo-dye); 
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
     color: var(--flax);
+}
+
+.product-listing-title {
+    position: relative; /* Needed for absolute positioning of the child */
+}
+
+.product-listing-title button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: transparent; 
+    border: none; 
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px; 
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+}
+
+.product-listing-title button:hover {
+    background-color: #f0f0f0;
 }

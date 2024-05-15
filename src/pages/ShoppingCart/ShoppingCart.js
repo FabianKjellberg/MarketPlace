@@ -29,8 +29,8 @@ function ShoppingCart() {
 
             <div className='homepage-listing-wrapper'>
                 <div className='homepage-listings'>
-                    {items.map((item, index) => (
-                    <ProductListing key={item.id || index} product={item} inShoppingCart={true}/>
+                    {items.map((item) => (
+                    <ProductListing key={item.id} product={item} inShoppingCart={true} isBuyable={true}/>
                 ))}
                 </div>
             </div>

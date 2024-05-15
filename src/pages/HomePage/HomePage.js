@@ -20,10 +20,11 @@ function HomePage() {
     <>
         <div className='homepage'>
           <div className='homepage-listing-wrapper'>
+          <h1>Current Listings</h1>
             <div className='homepage-listings'>
-              {products.map((product, index) => {
+                {products.map((product) => {
                 const isInCart = items.some(item => item.id === product.id);
-                return !isInCart && <ProductListing key={index} product={product} inShoppingCart={false}/>;
+                return !isInCart && <ProductListing key={product.id} product={product} inShoppingCart={false} isBuyable={true}/>;
               })}
             </div>
           </div>

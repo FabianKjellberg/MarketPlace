@@ -1,80 +1,105 @@
 import './SellProduct.css';
 import { useState } from 'react';
 import { useNavigate , useLocation} from 'react-router-dom';
-import AuthenticationManager from '../../utilities/AuthenticationManager.js';
 
-function LogIn() {
-  
-  const location = useLocation();
-  const loginEmail = new URLSearchParams(location.search).get('userid');
+function SellProduct() {
+ 
 
   const navigate = useNavigate();
+
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 20 }, (v, i) => currentYear - i);
   
   const [formData, setFormData] = useState({
-    email: loginEmail,
-    password:''
+    name: '',
+    price: '',
+    color: '',
+    yearOfProduction: currentYear, 
+    condition: ''
   });
-
-  
-
-  const [showError, setShowError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = ((e) => {
       const { name, value } = e.target;
       setFormData({ ...formData, [name]: value });
   });
 
-  const handleError = ((error) => {
-      console.log("Error object: ", error.message);
-      if(error.message === "User is not confirmed."){
-        navigate(`/userconfirmation?userid=${formData.email}`)
-      }
-      else{
-        setShowError(true);
-        setErrorMessage(error.message);
-      }
-  });
-
   const handleSubmit = ((event) =>{
-    authenticationManager.Authenticate(formData)
+        event.preventDefault();
+        
   });
   
   return (
     <>
-      <div className='login'>
-        <div className='login-window'>
-          <div className='login-greeting'>
-            <h2>Welcome back!</h2>
-            <h3>We're glad to see you back</h3>
+      <div className='sell-product'>
+        <div className='sell-product-window'>
+          <div className='sell-product-greeting'>
+            <h2>Create a listing for your item!</h2>
+            <h3>Enter the information needed below to sell an item</h3>
           </div>
-          <form className="login-form" onSubmit={handleSubmit}>
-            <label className='login-labels'>
-              <p>Email</p>
+          <form className="sell-product-form" onSubmit={handleSubmit}>
+            <label className='sell-product-labels'>
+              <p>Name</p>
               <input
-                type="email"
-                name="email"
-                value={formData.email}
+                type="text"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
             </label>
-            <label className='login-labels'>
-              <p>Password</p>
+            <label className='sell-product-labels'>
+              <p>Price</p>
               <input
-                type="password"
-                name="password"
-                value={formData.password}
+                type="number"
+                name="price"
+                value={formData.price}
                 onChange={handleChange}
                 required
               />
             </label>
-            {showError && (<p className="index-error-message">{errorMessage}</p>)}
-            <div className='login-login-button'>
-              <button type="submit">Log In</button>
-            </div>
-            <div className='login-register'>
-              <a href="signup">Dont have an account? Register here!</a>
+            <label className='sell-product-labels'>
+              <p>Color</p>
+              <input
+                type="text"
+                name="color"
+                value={formData.color}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label className='sell-product-labels'>
+              <p>Year Of Production</p>
+              <select
+                type="text"
+                name="yearOfProduction"
+                value={formData.yearOfProduction}
+                onChange={handleChange}
+                required
+                >
+                {years.map(year => (
+                  <option key={year} value={year}>{year}</option>
+                ))}
+              </select>
+            </label>
+            <label className='sell-product-labels'>
+              <p>Condition</p>
+              <select
+                name="condition"
+                value={formData.condition}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Condition</option>
+                <option value="new">New</option>
+                <option value="used-like-new">Used - Like New</option>
+                <option value="used-good">Used - Good</option>
+                <option value="used-fair">Used - Fair</option>
+                <option value="used-fair">Used - Bad</option>
+              </select>
+            </label>
+
+            <div className='sell-product-button'>
+              <button type="submit">List Product</button>
             </div>
             </form>
         </div>
@@ -83,4 +108,4 @@ function LogIn() {
   );
 }
 
-export default LogIn;
+export default SellProduct;
