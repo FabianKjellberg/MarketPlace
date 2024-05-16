@@ -10,6 +10,8 @@ export const AuthenticationProvider = ({ children }) => {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const [token, setToken] = useState(null);
+
     const logIn = (userName) => {
       setLoggedIn(true);
       setUserName(userName);
@@ -20,6 +22,8 @@ export const AuthenticationProvider = ({ children }) => {
     }
 
   const value = {
+    setToken,
+    token,
     loggedIn,
     logIn,
     logOut,

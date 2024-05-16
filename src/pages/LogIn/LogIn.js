@@ -1,5 +1,5 @@
 import './LogIn.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate , useLocation} from 'react-router-dom';
 import AuthenticationManager from '../../utilities/AuthenticationManager.js';
 import { useAuthentication } from '../../utilities/AuthenticationProvider';
@@ -10,10 +10,20 @@ function LogIn() {
   const navigate = useNavigate();
   const loginEmail = new URLSearchParams(location.search).get('userid');
   const redirect = new URLSearchParams(location.search).get('redirect');
-  const authenticationManager = new AuthenticationManager("http://localhost:8080");
-  const { logIn } = useAuthentication();
+  const { loggedIn, logIn, setToken } = useAuthentication();
+  const [authenticationManager, setAuthenticationManager] = useState(null);
 
+
+  useEffect(() => {
+    // Initialize the AuthenticationManager once
+    setAuthenticationManager(new AuthenticationManager("http://localhost:8080", { logIn, setToken }));
+  }, [logIn, setToken]);
   
+  useEffect(() => {
+    
+    
+    if(loggedIn) navigate(redirect ? `/${redirect}` :  '/' )
+  },[loggedIn])
   
   const [formData, setFormData] = useState({
     email: loginEmail,
@@ -41,12 +51,8 @@ function LogIn() {
 
   const handleSubmit = ((event) =>{
     event.preventDefault();
-    console.log(redirect + "Hej")
     
     authenticationManager.Authenticate(formData)
-    logIn(formData.email)
-    
-    navigate(redirect ? `/${redirect}` :  '/' )
   });
   
   return (
