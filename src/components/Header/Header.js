@@ -11,7 +11,7 @@ function Header() {
   
     const { itemCount } = useCart();
     const { loggedIn, logIn, logOut } = useAuthentication();
-    const [nav, setNav] = useState('/sellproduct')
+    const [nav, setNav] = useState('sellproduct')
         
     return (
     <>

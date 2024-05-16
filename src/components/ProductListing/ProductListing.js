@@ -31,7 +31,7 @@ function ProductListing(props) {
                     >
                     <p>Production Year: {product.yearOfProduction}</p>
                     <p>Color: {product.color}</p>
-                    <p>Condition Year: {product.condition}</p>
+                    <p>Condition: {product.condition}</p>
                 </CollapsableMenu>
             </div>
             <div className='product-listing-price-button'>
