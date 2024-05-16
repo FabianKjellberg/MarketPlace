@@ -1,29 +1,46 @@
-import ProductListing from "../../components/ProductListing/ProductListing";
 import { useState } from "react";
-
 function Inbox() {
-  
 
-    const [ownProducts, setProducts] = useState([
-      { id: 1, name: 'Mac book air pro1', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-      { id: 2, name: 'Mac book air pro2', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-      { id: 3, name: 'Mac book air pro3', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-      { id: 4, name: 'Mac book air pro4', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-      { id: 5, name: 'Mac book air pro5', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-      { id: 6, name: 'Mac book air pro7', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' }
-    ]);
-
+  const handleSubmit = ((event) =>{
+    event.preventDefault();
+});
+const handleChange = ((e) => {
+  const { name, value } = e.target;
+  setFormData({ ...formData, [name]: value });
+});
+const [formData, setFormData] = useState({
+  name: '',
+  price: '',
+  color: '',
+  condition: ''
+});
     return (
       <>
-      <select>
-      <option>hej</option>
-      <option>hej2</option>
-      <option>hej3</option>
-      </select>
-      <ProductListing />    
-      <p>hej</p>  
-    </>
+      <div>
+        <form className="sell-product-form" onSubmit={handleSubmit}>
+        <label className='sell-product-labels'>
+              <p>Condition</p>
+              <select
+                name="condition"
+                value={formData.condition}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Condition</option>
+                <option value="new">New</option>
+                <option value="used-like-new">Used - Like New</option>
+                <option value="used-good">Used - Good</option>
+                <option value="used-fair">Used - Fair</option>
+                <option value="used-fair">Used - Bad</option>
+              </select>
+            </label>
+
+          </form>
+
+      </div>
+      <div> </div>
+      </>
     );
   }
-  
+
   export default Inbox;
