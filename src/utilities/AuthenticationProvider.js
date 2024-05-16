@@ -19,6 +19,7 @@ export const AuthenticationProvider = ({ children }) => {
     const logOut = () => {
       setLoggedIn(false);
       setUserName("NULLLLLL")
+      setToken(null);
     }
 
   const value = {

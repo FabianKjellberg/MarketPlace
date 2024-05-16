@@ -44,11 +44,13 @@ function LogIn() {
   const handleSubmit = ((event) =>{
     event.preventDefault();
     authenticationManager.Authenticate(formData).then((response) => {
-        
-          setToken(response)
-          logIn(formData.email);  
-        
-    })
+      
+      if(response !== "error"){
+        console.log("hej")
+        setToken(response)
+        logIn(formData.email);  
+      }
+           })
   });
   
   return (

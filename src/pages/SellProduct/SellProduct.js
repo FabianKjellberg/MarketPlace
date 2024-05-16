@@ -1,6 +1,8 @@
 import './SellProduct.css';
 import { useState } from 'react';
 import { useNavigate , useLocation} from 'react-router-dom';
+import CreateListingManager from '../../utilities/CreateListingManager';
+import { useAuthentication } from '../../utilities/AuthenticationProvider';
 
 function SellProduct() {
  
@@ -9,6 +11,8 @@ function SellProduct() {
 
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 20 }, (v, i) => currentYear - i);
+  const createListingManager = new CreateListingManager("http://localhost:8080/");
+  const {token} = useAuthentication();
   
   const [formData, setFormData] = useState({
     name: '',
@@ -26,6 +30,7 @@ function SellProduct() {
   const handleSubmit = ((event) =>{
         event.preventDefault();
         
+        createListingManager.CreateListing(formData, token);
   });
   
   return (

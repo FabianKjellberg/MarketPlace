@@ -18,8 +18,6 @@ class AuthenticationManager {
     }
 
     Authenticate(userDetails) {
-        
-        
         const returnData = this.axiosInstance.post('/auth/login', userDetails)
             .then(response => {
                 if(response.status == 200){
