@@ -10,13 +10,16 @@ function HomePage() {
   const [products, setProducts] = useState([]);
   const currentListingManager = new CurrentListingManager("http://localhost:8080");
 
-  useEffect(() => {
-        async function loadProducts() {
-            const productsData = await currentListingManager.RetrieveListings();
-            setProducts(productsData);
-        }
+  
 
-        loadProducts();
+  useEffect(() => {
+    async function loadProducts() {
+      const productsData = await currentListingManager.RetrieveListings();
+      setProducts(productsData);
+    }
+
+
+    loadProducts();
   },[])
 
   return (
