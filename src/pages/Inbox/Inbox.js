@@ -1,6 +1,6 @@
 import { useState } from "react";
 function Inbox() {
-  
+
   const handleSubmit = ((event) =>{
     event.preventDefault();
 });
@@ -11,7 +11,7 @@ const handleChange = ((e) => {
 const [formData, setFormData] = useState({
   name: '',
   price: '',
-  color: '', 
+  color: '',
   condition: ''
 });
     return (
@@ -42,5 +42,5 @@ const [formData, setFormData] = useState({
       </>
     );
   }
-  
+
   export default Inbox;

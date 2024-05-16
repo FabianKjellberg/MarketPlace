@@ -14,7 +14,6 @@ function HomePage() {
     async function loadProducts() {
       const productsData = await currentListingManager.RetrieveListings();
       setProducts(productsData);
-      console.log(products)
     }
 
 
@@ -33,6 +32,7 @@ function HomePage() {
               })}
             </div>
           </div>
+          <button onClick={()=>console.log(products)}>hej</button>
         </div>
     </>
   );
