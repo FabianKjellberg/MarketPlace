@@ -12,7 +12,7 @@ function SellProduct() {
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 20 }, (v, i) => currentYear - i);
   const createListingManager = new CreateListingManager("http://localhost:8080/");
-  const {token} = useAuthentication();
+  const { token } = useAuthentication();
   
   const [formData, setFormData] = useState({
     name: '',

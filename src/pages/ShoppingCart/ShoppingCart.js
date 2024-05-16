@@ -3,11 +3,24 @@ import './ShoppingCart.css';
 import { useCart } from '../../utilities/CartProvider';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useAuthentication } from '../../utilities/AuthenticationProvider.js';
+import CreateOfferManager from '../../utilities/CreateOfferManager.js';
 
 function ShoppingCart() {
 
   const { items, itemCount, totalCost } = useCart();
   let navigate = useNavigate();
+
+  const createOfferManager = new CreateOfferManager();
+
+  const { loggedIn } = useAuthentication();
+
+  function submitOffer(){
+        if(!loggedIn) navigate('/login?redirect=shoppingcart')
+        else{
+            
+        }
+  }
 
   return (
     <>
@@ -37,7 +50,7 @@ function ShoppingCart() {
             {(itemCount > 0) && (
             <>
                 <div className='shopping-cart-make-offer'>
-                    <button>Make Offer <b>(Total price: {totalCost.toFixed(2)})</b></button>
+                    <button onClick={() => submitOffer()}>Make Offer <b>(Total price: {totalCost.toFixed(2)})</b></button>
                 </div>
             </>
             )}
