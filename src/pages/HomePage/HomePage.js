@@ -3,13 +3,14 @@ import ProductListing from '../../components/ProductListing/ProductListing.js';
 import './HomePage.css';
 import { useCart } from '../../utilities/CartProvider';
 import CurrentListingManager from '../../utilities/CurrentListingManager.js';
+import { useAuthentication } from '../../utilities/AuthenticationProvider.js';
 
 function HomePage() {
 
   const { items } = useCart();
   const [products, setProducts] = useState([]);
   const currentListingManager = new CurrentListingManager("http://localhost:8080");
-
+  const { token } = useAuthentication;
   
 
   useEffect(() => {
@@ -35,6 +36,7 @@ function HomePage() {
             </div>
           </div>
         </div>
+        <button onClick={() => console.log(token)}>token</button>
     </>
   );
 }

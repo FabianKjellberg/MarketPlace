@@ -11,17 +11,9 @@ function LogIn() {
   const loginEmail = new URLSearchParams(location.search).get('userid');
   const redirect = new URLSearchParams(location.search).get('redirect');
   const { loggedIn, logIn, setToken } = useAuthentication();
-  const [authenticationManager, setAuthenticationManager] = useState(null);
-
-
-  useEffect(() => {
-    // Initialize the AuthenticationManager once
-    setAuthenticationManager(new AuthenticationManager("http://localhost:8080", { logIn, setToken }));
-  }, [logIn, setToken]);
+  const authenticationManager = new AuthenticationManager("http://localhost:8080/")
   
   useEffect(() => {
-    
-    
     if(loggedIn) navigate(redirect ? `/${redirect}` :  '/' )
   },[loggedIn])
   
@@ -51,8 +43,12 @@ function LogIn() {
 
   const handleSubmit = ((event) =>{
     event.preventDefault();
-    
-    authenticationManager.Authenticate(formData)
+    authenticationManager.Authenticate(formData).then((response) => {
+        
+          setToken(response)
+          logIn(formData.email);  
+        
+    })
   });
   
   return (
