@@ -1,20 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductListing from '../../components/ProductListing/ProductListing.js';
 import './HomePage.css';
 import { useCart } from '../../utilities/CartProvider';
+import CurrentListingManager from '../../utilities/CurrentListingManager.js';
 
 function HomePage() {
 
   const { items } = useCart();
+  const [products, setProducts] = useState([]);
+  const currentListingManager = new CurrentListingManager("http://localhost:8080");
 
-  const [products, setProducts] = useState([
-    { id: 1, name: 'Mac book air pro1', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-    { id: 2, name: 'Mac book air pro2', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-    { id: 3, name: 'Mac book air pro3', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-    { id: 4, name: 'Mac book air pro4', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-    { id: 5, name: 'Mac book air pro5', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-    { id: 6, name: 'Mac book air pro7', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' }
-  ]);
+  useEffect(() => {
+        async function loadProducts() {
+            const productsData = await currentListingManager.RetrieveListings();
+            setProducts(productsData);
+        }
+
+        loadProducts();
+  },[])
 
   return (
     <>

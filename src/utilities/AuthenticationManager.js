@@ -1,20 +1,28 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 class AuthenticationManager {
     constructor(apiUrl) {
         this.apiUrl = apiUrl;
+        this.axiosInstance = axios.create({
+            baseURL: apiUrl,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     }
 
     Authenticate(userDetails) {
-        return fetch(`${this.apiUrl}/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userDetails)
-        }).then(response => console.log(response))
-        .catch(error => console.error('Error authenticatings', error));
+        const returnData = this.axiosInstance.post('/auth/login', userDetails)
+            .then(response => {
+                return response.data; 
+            })
+            .catch(error => {
+                console.error('Error retrieving listings', error);
+                return [];
+            });
+        return returnData;
     }
 }
 export default AuthenticationManager;
