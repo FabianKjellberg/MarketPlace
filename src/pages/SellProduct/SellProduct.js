@@ -64,13 +64,23 @@ function SellProduct() {
             </label>
             <label className='sell-product-labels'>
               <p>Color</p>
-              <input
-                type="text"
+              <select
                 name="color"
                 value={formData.color}
                 onChange={handleChange}
                 required
-              />
+              >
+                <option value="">Select Color</option>
+                <option value="RED">Red</option>
+                <option value="GREEN">Green</option>
+                <option value="BLUE">Blue</option>
+                <option value="BLACK">Black</option>
+                <option value="WHITE">White</option>
+                <option value="YELLOW">Yellow</option>
+                <option value="ORANGE">ORANGE</option>
+                <option value="PURPLE">Purple</option>
+                <option value="GREY">Grey</option>
+              </select>
             </label>
             <label className='sell-product-labels'>
               <p>Year Of Production</p>
