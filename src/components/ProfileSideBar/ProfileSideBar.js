@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { useInbox } from '../../utilities/InboxContext';
 import './ProfileSideBar.css';
 
 function ProfileSidebar() {
 
-    const [messages, setMessage] = useState(4)
+    const { inboxCount } = useInbox();
 
     return (
         <div className="profile-sidebar">
@@ -16,7 +17,7 @@ function ProfileSidebar() {
                     <li><NavLink to="/profile/userinfo" activeClassName="active">General Information</NavLink></li>
                     <li><NavLink to="/profile/listings" activeClassName="active">My Listings</NavLink></li>
                     <li><NavLink to="/profile/offers" activeClassName="active">Offers </NavLink></li>
-                    <li><NavLink to="/profile/inbox" activeClassName="active">Inbox ({messages})</NavLink></li>
+                    <li><NavLink to="/profile/inbox" activeClassName="active">Inbox ({inboxCount})</NavLink></li>
                     <li><NavLink to="/profile/history" activeClassName="active">Buy/Sell History</NavLink></li>
                 </ul>
             </div>
