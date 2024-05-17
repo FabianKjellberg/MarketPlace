@@ -11,14 +11,16 @@ function ShoppingCart() {
   const { items, itemCount, totalCost } = useCart();
   let navigate = useNavigate();
 
-  const createOfferManager = new CreateOfferManager();
+  const createOfferManager = new CreateOfferManager("http://localhost:8080");
 
-  const { loggedIn } = useAuthentication();
+  const { loggedIn, token } = useAuthentication();
 
   function submitOffer(){
         if(!loggedIn) navigate('/login?redirect=shoppingcart')
         else{
-            
+            createOfferManager.CreateOffer(items.map(item => item.id || 'defaultId'), token).then(()=>{
+                console.log("successsssssss");
+            })
         }
   }
 
