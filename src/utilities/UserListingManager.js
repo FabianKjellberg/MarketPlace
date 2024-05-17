@@ -12,7 +12,9 @@ class UserListingManager {
     }
 
     RetrieveListings() {
-        const returnData = this.axiosInstance.get('/product/availableProducts')
+        const returnData = this.axiosInstance.get('/product/availableProducts', {headers: {
+            Authorization: `Bearer ${token}`
+        },})
             .then(response => {
                 return response.data; 
             })
