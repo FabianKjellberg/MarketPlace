@@ -20,14 +20,14 @@ import History from './pages/History/History';
 
 import { CartProvider } from './utilities/CartProvider';
 import { AuthenticationProvider } from './utilities/AuthenticationProvider';
-import { InboxProvider } from './utilities/InboxContext'; // Lägg till denna import
+import { InboxProvider } from './utilities/InboxContext'; 
 
 function App() {
   return (
     <div className='app-site'>
       <CartProvider>
         <AuthenticationProvider>
-          <InboxProvider> {/* Lägg till InboxProvider här */}
+          <InboxProvider> {}
             <BrowserRouter>
               <Header />
               <main>
@@ -48,7 +48,7 @@ function App() {
               </main>
               <Footer />
             </BrowserRouter>
-          </InboxProvider> {/* Slut på InboxProvider */}
+          </InboxProvider> {}
         </AuthenticationProvider>
       </CartProvider>
     </div>
