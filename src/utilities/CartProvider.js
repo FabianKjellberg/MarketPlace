@@ -15,6 +15,10 @@ export const CartProvider = ({ children }) => {
     setItems(prevItems => prevItems.filter(item => item.id !== itemId));
   };
 
+  const resetCart = () => {
+    setItems([])
+  }
+
   const itemCount = items.length;
 
   const totalCost = items.reduce((total, item) => {
@@ -27,6 +31,7 @@ export const CartProvider = ({ children }) => {
     removeItem,
     itemCount,
     totalCost,
+    resetCart
   };
 
   return (

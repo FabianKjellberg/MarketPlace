@@ -8,7 +8,7 @@ import CreateOfferManager from '../../utilities/CreateOfferManager.js';
 
 function ShoppingCart() {
 
-  const { items, itemCount, totalCost } = useCart();
+  const { items, itemCount, totalCost, resetCart } = useCart();
   let navigate = useNavigate();
 
   const createOfferManager = new CreateOfferManager("http://localhost:8080");
@@ -19,7 +19,7 @@ function ShoppingCart() {
         if(!loggedIn) navigate('/login?redirect=shoppingcart')
         else{
             createOfferManager.CreateOffer(items.map(item => item.id || 'defaultId'), token).then(()=>{
-                console.log("successsssssss");
+                resetCart();
             })
         }
   }
