@@ -3,17 +3,20 @@ import ProductListing from "../../components/ProductListing/ProductListing";
 import './UserListings.css'
 import DeleteProductManager from "../../utilities/DeleteProductManager";
 import UserListingManager from "../../utilities/UserListingManager";
+import { useAuthentication } from "../../utilities/AuthenticationProvider";
 
 function UserListings() {
   
   const [ownProducts, setProducts] = useState([]);
+
+  const token = useAuthentication();
 
   const deleteProductManager = new DeleteProductManager("http://localhost:8080");
   const userListingManager = new UserListingManager("http://localhost:8080");
   
   useEffect(() => {
     async function loadProducts() {
-      const productsData = await userListingManager.RetrieveListings();
+      const productsData = await userListingManager.RetrieveListings(token);
       setProducts(productsData);
     }
 
