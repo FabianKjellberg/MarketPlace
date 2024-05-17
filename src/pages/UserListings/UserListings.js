@@ -1,21 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductListing from "../../components/ProductListing/ProductListing";
 import './UserListings.css'
+import DeleteProductManager from "../../utilities/DeleteProductManager";
+import UserListingManager from "../../utilities/UserListingManager";
 
 function UserListings() {
   
-    const [ownProducts, setProducts] = useState([
-        { id: 1, name: 'Mac book air pro1', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-        { id: 2, name: 'Mac book air pro2', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-        { id: 3, name: 'Mac book air pro3', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-        { id: 4, name: 'Mac book air pro4', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-        { id: 5, name: 'Mac book air pro5', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' },
-        { id: 6, name: 'Mac book air pro7', price: 99.99, yearOfProduction: '2022', color: 'RED', condition: 'new' }
-      ]);
+  const [ownProducts, setProducts] = useState([]);
+
+  const deleteProductManager = new DeleteProductManager("http://localhost:8080");
+  const userListingManager = new UserListingManager("http://localhost:8080");
+  
+  useEffect(() => {
+    async function loadProducts() {
+      const productsData = await userListingManager.RetrieveListings();
+      setProducts(productsData);
+    }
+
+
+    loadProducts();
+  },[])  
     
-      const removeProduct = (productId) => {
-        setProducts(ownProducts.filter(product => product.id !== productId));
-      };
+  const removeProduct = (productId) => {
+    deleteProductManager.deleteProduct({id:productId})
+    setProducts(ownProducts.filter(product => product.id !== productId));
+  };
 
     return (
       <>

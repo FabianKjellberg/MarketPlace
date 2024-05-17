@@ -18,7 +18,8 @@ function ShoppingCart() {
   function submitOffer(){
         if(!loggedIn) navigate('/login?redirect=shoppingcart')
         else{
-            createOfferManager.CreateOffer(items.map(item => item.id || 'defaultId'), token).then(()=>{
+            createOfferManager.CreateOffer(items.map(item => item.id || 'defaultId'), token).then((response)=>{
+                if(response === "Order submitted")
                 resetCart();
             })
         }

@@ -46,10 +46,10 @@ function LogIn() {
     authenticationManager.Authenticate(formData).then((response) => {
       
       if(response !== "error"){
-        console.log("hej")
         setToken(response)
         logIn(formData.email);  
       }
+      else handleError({message:"wrong username or password"})
            })
   });
   
