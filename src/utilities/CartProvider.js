@@ -26,7 +26,7 @@ export const CartProvider = ({ children }) => {
     addItem,
     removeItem,
     itemCount,
-    totalCost
+    totalCost,
   };
 
   return (

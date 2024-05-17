@@ -14,7 +14,7 @@ class CreateListingManager {
     }
 
     CreateOffer(productIDs, token) {
-        const returnData = this.axiosInstance.put('/product/submitProductOrder', productIDs ,{headers: {
+        const returnData = this.axiosInstance.put('/product/submitProductOrder', {id:productIDs} ,{headers: {
             Authorization: `Bearer ${token}`
         },})
             .then(response => {
