@@ -24,7 +24,7 @@ function UserListings() {
   },[])  
     
   const removeProduct = (productId) => {
-    deleteProductManager.deleteProduct({id:productId})
+    deleteProductManager.DeleteProduct({id:productId})
     setProducts(ownProducts.filter(product => product.id !== productId));
   };
 
