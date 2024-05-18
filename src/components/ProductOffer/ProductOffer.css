@@ -1,0 +1,9 @@
+.product-offer-wrapper {
+    background-color: var(--white);
+    width: 350px;
+}
+
+.product-offer-button{
+    background-color: var(--white);
+    padding: 15px;
+}
