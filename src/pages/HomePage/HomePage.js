@@ -35,6 +35,11 @@ function HomePage() {
   function filterProducts(productsData) {
     let filtered = productsData;
 
+    if (!searchParams.term || searchParams.term.trim() === '') {
+      setFilteredProducts(productsData);
+      return;
+    }
+
     if (searchParams.by === 'Name' && searchParams.term !== '') {
       filtered = filtered.filter(product => product.name.toLowerCase().includes(searchParams.term.toLowerCase()));
     }
