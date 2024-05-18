@@ -20,17 +20,7 @@ function HomePage() {
   //Arthur
   const subscribeToCategory = new SubscribeCategory("http://localhost:8080/");
   const { token } = useAuthentication();
-  /*
-  useEffect(() => {
-    async function loadProducts() {
-      const productsData = await currentListingManager.RetrieveListings();
-      setProducts(productsData);
-      setFilteredProducts(productsData); // Initialisera filteredProducts med alla produkter
-    }
-
-    loadProducts();
-  }, []);
-  */
+  
   useEffect(() => {
     async function loadProducts() {
       const productsData = await currentListingManager.RetrieveListings();
