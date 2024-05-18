@@ -1,22 +1,26 @@
 import './LogIn.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate , useLocation} from 'react-router-dom';
 import AuthenticationManager from '../../utilities/AuthenticationManager.js';
+import { useAuthentication } from '../../utilities/AuthenticationProvider';
 
 function LogIn() {
   
   const location = useLocation();
-  const loginEmail = new URLSearchParams(location.search).get('userid');
-  const authenticationManager = new AuthenticationManager("http://localhost:8080");
-
   const navigate = useNavigate();
+  const loginEmail = new URLSearchParams(location.search).get('userid');
+  const redirect = new URLSearchParams(location.search).get('redirect');
+  const { loggedIn, logIn, setToken } = useAuthentication();
+  const authenticationManager = new AuthenticationManager("http://localhost:8080/")
+  
+  useEffect(() => {
+    if(loggedIn) navigate(redirect ? `/${redirect}` :  '/' )
+  },[loggedIn])
   
   const [formData, setFormData] = useState({
     email: loginEmail,
     password:''
   });
-
-  
 
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -38,7 +42,15 @@ function LogIn() {
   });
 
   const handleSubmit = ((event) =>{
-    authenticationManager.Authenticate(formData)
+    event.preventDefault();
+    authenticationManager.Authenticate(formData).then((response) => {
+      
+      if(response !== "error"){
+        setToken(response)
+        logIn(formData.email);  
+      }
+      else handleError({message:"wrong username or password"})
+           })
   });
   
   return (
