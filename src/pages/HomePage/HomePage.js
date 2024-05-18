@@ -64,6 +64,7 @@ function HomePage() {
         <div className='homepage-listing-wrapper'>
           <div className='header-with-search'>
             <h1>Current Listings</h1>
+            <hr style={{ border: 'none', height: '1px', backgroundColor: '#333', marginBottom: '20px', marginRight: '25px' }} />
             <div className='search-by'>
               <div className='search-section'>
                 <p>Search by:</p>
