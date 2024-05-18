@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import ProductListing from '../ProductListing/ProductListing';
 import './SearchBar.css';
 
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchBy, setSearchBy] = useState('product name');
+  //const [searchBy, setSearchBy] = useState('product name');
+  const [searchBy, setSearchBy] = useState('Name');
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -13,13 +15,32 @@ function SearchBar({ onSearch }) {
     setSearchBy(event.target.value);
   };
 
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     // Anta att onSearch gör något (som att logga eller förbereda data)
-    onSearch(searchTerm, searchBy); //DELA UPP TILL OLIKA METODER
+    //onSearch(searchTerm, searchBy); //DELA UPP TILL OLIKA METODER
+    let url = `http://localhost:3000/product/search/by${encodeURIComponent(searchBy)}`;
+    
+    if (searchBy === "PriceRange") {
+      // Antag att searchTerm är "100-500" för prissökning
+      const [minPrice, maxPrice] = searchTerm.split('-');
+      url += `?minPrice=${minPrice}&maxPrice=${maxPrice}`;
+    } else {
+      url += `?${searchBy.toLowerCase()}=${encodeURIComponent(searchTerm)}`;
+    }
 
     // Använd `window.location.href` för att bygga URL med sökparametrar
-    window.location.href = `/search?term=${encodeURIComponent(searchTerm)}&by=${encodeURIComponent(searchBy)}`;
+    window.location.href = `http://localhost:3000/product/search/by${encodeURIComponent(searchBy)}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        //setProducts(data); // Spara datan i state
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+        alert('Failed to retrieve data');
+      });
   };
 
   return (
@@ -32,11 +53,13 @@ function SearchBar({ onSearch }) {
         onChange={handleInputChange}
       />
       <select className="search-select" value={searchBy} onChange={handleSearchByChange}>
-        <option value="product name">name</option>
-        <option value="price">price</option>
-        <option value="condition">condition</option>
+        <option value="Name">name</option>
+        <option value="PriceRange">price</option>
+        <option value="Condition">condition</option>
       </select>
       <button type="submit">Search</button>
+      
+       
     </form>
   );
 }
