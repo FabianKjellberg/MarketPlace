@@ -33,7 +33,7 @@ function Inbox() {
 
     // Filtrera produkter baserat på vald kategori
     if (value === '') {
-      setFilteredProducts(products); // Visa alla produkter om ingen kategori är vald
+      //setFilteredProducts(products); // Visa alla produkter om ingen kategori är vald
       setInboxCount(products.length); // Uppdatera inboxCount
     } else {
       const filtered = products.filter(product => product.category === value);
