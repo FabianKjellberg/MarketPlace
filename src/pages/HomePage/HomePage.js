@@ -25,11 +25,11 @@ function HomePage() {
     async function loadProducts() {
       const productsData = await currentListingManager.RetrieveListings();
       setProducts(productsData);
-      filterProducts(productsData); // Filtrera produkter baserat på sökparametrar när de laddas
+      filterProducts(productsData); 
     }
 
     loadProducts();
-  }, [searchParams]); // Uppdatera när searchParams ändras
+  }, [searchParams]); 
   
 
   function filterProducts(productsData) {

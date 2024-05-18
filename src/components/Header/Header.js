@@ -15,17 +15,13 @@ function Header() {
     const { setSearchParams } = useSearch();
 
     const handleSearch = (searchTerm, searchBy) => {
-        
         setSearchParams({ term: searchTerm, by: searchBy });
         
     };
-    
-  
-  
+
+
     return (
     <>
-        
-        
         <div className="header-burger">
         <Link to="/"><img className="logo-name" src={logo}></img></Link>
         <SearchBar onSearch={handleSearch}/> 

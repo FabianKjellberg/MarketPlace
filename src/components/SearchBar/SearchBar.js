@@ -24,7 +24,6 @@ function SearchBar({ onSearch }) {
 
   const handleSearchByChange = (event) => {
     setSearchBy(event.target.value);
-    // Nollställ priser när användaren byter från eller till PriceRange
     if (event.target.value !== 'PriceRange') {
       setMinPrice('');
       setMaxPrice('');
@@ -36,7 +35,7 @@ function SearchBar({ onSearch }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     let currentSearchTerm = searchBy === 'PriceRange' ? `${minPrice}-${maxPrice}` : searchTerm;
-    setSearchParams({ term: currentSearchTerm, by: searchBy }); // Uppdatera sökparametrarna i context
+    setSearchParams({ term: currentSearchTerm, by: searchBy }); 
     console.log("searchbar.js search: " + currentSearchTerm)
   };
 
