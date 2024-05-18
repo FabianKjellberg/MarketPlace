@@ -15,9 +15,11 @@ function Header() {
     const { setSearchParams } = useSearch();
 
     const handleSearch = (searchTerm, searchBy) => {
+        
         setSearchParams({ term: searchTerm, by: searchBy });
-        console.log("seach header");
+        
     };
+    
   
   
     return (
