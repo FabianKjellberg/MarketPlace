@@ -1,7 +1,6 @@
 import './SignUp.css';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import UserPool from '../../utilities/UserPool.js';
 import AccountRegistrationManager from '../../utilities/AccountRegistrationManager';
 import ProductListing from '../../components/ProductListing/ProductListing';
 
