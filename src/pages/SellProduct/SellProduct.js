@@ -77,7 +77,7 @@ function SellProduct() {
                 <option value="BLACK">Black</option>
                 <option value="WHITE">White</option>
                 <option value="YELLOW">Yellow</option>
-                <option value="ORANGE">ORANGE</option>
+                <option value="ORANGE">Orange</option>
                 <option value="PURPLE">Purple</option>
                 <option value="GREY">Grey</option>
               </select>
