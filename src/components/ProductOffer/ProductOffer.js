@@ -2,21 +2,24 @@ import ProductListing from '../ProductListing/ProductListing';
 import './ProductOffer.css'
 import React from 'react';
 import { useState } from 'react';
-import CollapsableMenu from '../CollapsableMenu/CollapsableMenu';
-import { useCart } from '../../utilities/CartProvider';
 
 function ProductOffer(props) {
 
+    const [product, setProduct] = useState(props.product)
+    
     return (
     <>
         <div className='product-offer-wrapper'>
+            
             <ProductListing 
-                product={props.product}
+                product={product}
             />
             <div className='product-offer-buttons'>
-                <p>hej</p>
-                <button>Accept</button>
-                <button>Reject</button>
+                <p>{product?.buyer?.username ? product.buyer.username : "DEFAULT" } wants to purchase your item</p>
+                <div className='product-offer-buttons-wrapper'>
+                    <button>Accept</button>
+                    <button>Reject</button>
+                </div> 
             </div>
         </div> 
     </>

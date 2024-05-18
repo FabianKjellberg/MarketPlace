@@ -32,7 +32,8 @@ function History() {
   return (
       <>
         <h1>Pruchasing/Sales History</h1>
-        <h3>You can choose to only view the history based on a timespan, Leave this blank if you want to see all your purchases and sales</h3>
+        <p>You can choose to only view the history based on a timespan, Leave this blank if you want to see all your purchases and sales</p>
+        <hr style={{ border: 'none', height: '1px', backgroundColor: '#333', marginBottom: '20px', marginRight: '25px' }} />
         <div class="form-container">
           <form>
               <label for="from">From:</label>
