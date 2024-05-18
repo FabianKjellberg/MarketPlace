@@ -14,7 +14,7 @@ class DeleteProductManager {
     }
 
     DeleteProduct(productID, token) {
-        const returnData = this.axiosInstance.delete('/product/deleteProduct', {id:productID} ,{headers: {
+        const returnData = this.axiosInstance.delete(`/product/deleteProduct/${productID}`,{headers: {
             Authorization: `Bearer ${token}`
         },})
             .then(response => {
