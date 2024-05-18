@@ -17,6 +17,7 @@ import UserListings from './pages/UserListings/UserListings';
 import Offers from './pages/Offers/Offers';
 import Inbox from './pages/Inbox/Inbox';
 import History from './pages/History/History';
+import { SearchProvider } from './components/SearchBar/SearchContext.js';
 
 import { CartProvider } from './utilities/CartProvider';
 import { AuthenticationProvider } from './utilities/AuthenticationProvider';
@@ -29,6 +30,7 @@ function App() {
         <AuthenticationProvider>
           <InboxProvider> {}
             <BrowserRouter>
+            <SearchProvider>
               <Header />
               <main>
                 <Routes>
@@ -47,6 +49,7 @@ function App() {
                 </Routes>
               </main>
               <Footer />
+              </SearchProvider>
             </BrowserRouter>
           </InboxProvider> {}
         </AuthenticationProvider>

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import ProductListing from '../ProductListing/ProductListing';
 import './SearchBar.css';
+import { useSearch } from '../../components/SearchBar/SearchContext'; 
 
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
-  //const [searchBy, setSearchBy] = useState('product name');
   const [searchBy, setSearchBy] = useState('Name');
+  const { setSearchParams } = useSearch();
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -15,33 +16,12 @@ function SearchBar({ onSearch }) {
     setSearchBy(event.target.value);
   };
 
-  
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Anta att onSearch gör något (som att logga eller förbereda data)
-    //onSearch(searchTerm, searchBy); //DELA UPP TILL OLIKA METODER
-    let url = `http://localhost:3000/product/search/by${encodeURIComponent(searchBy)}`;
-    
-    if (searchBy === "PriceRange") {
-      // Antag att searchTerm är "100-500" för prissökning
-      const [minPrice, maxPrice] = searchTerm.split('-');
-      url += `?minPrice=${minPrice}&maxPrice=${maxPrice}`;
-    } else {
-      url += `?${searchBy.toLowerCase()}=${encodeURIComponent(searchTerm)}`;
-    }
-
-    // Använd `window.location.href` för att bygga URL med sökparametrar
-    window.location.href = `http://localhost:3000/product/search/by${encodeURIComponent(searchBy)}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        //setProducts(data); // Spara datan i state
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-        alert('Failed to retrieve data');
-      });
+    setSearchParams({ term: searchTerm, by: searchBy }); // Uppdatera sökparametrarna i context
+    console.log("search: " + searchTerm)
   };
+
 
   return (
     <form onSubmit={handleSubmit} className='search-bar'>

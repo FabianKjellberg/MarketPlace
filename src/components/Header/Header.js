@@ -6,17 +6,19 @@ import Burger from '../Burger/Burger.js'
 import logo from '../../resources/images/marketplace_logo.png'
 import SearchBar from '../SearchBar/SearchBar.js';
 import { useCart } from '../../utilities/CartProvider';
-import { useNavigate } from 'react-router-dom';
+import { useSearch } from '../SearchBar/SearchContext.js'
 
 function Header() {
   
     const { itemCount } = useCart();
 
-    const navigate = useNavigate(); 
+    const { setSearchParams } = useSearch();
 
     const handleSearch = (searchTerm, searchBy) => {
-        navigate(`/search?term=${encodeURIComponent(searchTerm)}&by=${encodeURIComponent(searchBy)}`);
+        setSearchParams({ term: searchTerm, by: searchBy });
+        console.log("seach header");
     };
+  
   
     return (
     <>
