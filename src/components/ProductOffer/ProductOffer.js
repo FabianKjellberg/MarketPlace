@@ -19,7 +19,7 @@ function ProductOffer(props) {
                 product={product}
             />
             <div className='product-offer-buttons'>
-                <p>{product.buyerUsername ? product.buyer.username : "DEFAULT" } wants to purchase your item</p>
+                <p>{product.buyerUsername ? product.buyerUsername : "DEFAULT" } wants to purchase your item</p>
                 <div className='product-offer-buttons-wrapper'>
                     <button>Accept</button>
                     <button>Reject</button>

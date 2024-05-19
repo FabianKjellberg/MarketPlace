@@ -14,6 +14,7 @@ class CreateOfferManager {
     }
 
     async CreateOffer(productIDs, token) {
+        console.log(productIDs);
         const returnData = await this.axiosInstance.put('/product/submitProductOrder', {id:productIDs} ,{headers: {
             Authorization: `Bearer ${token}`
         },})

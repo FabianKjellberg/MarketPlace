@@ -18,6 +18,7 @@ function SellProduct() {
     name: '',
     price: '',
     color: '',
+    category: '',
     yearOfProduction: currentYear, 
     condition: ''
   });
@@ -80,6 +81,22 @@ function SellProduct() {
                 <option value="ORANGE">Orange</option>
                 <option value="PURPLE">Purple</option>
                 <option value="GREY">Grey</option>
+              </select>
+            </label>
+            <label className='sell-product-labels'>
+              <p>Category</p>
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Category</option>
+                <option value="COMPUTER">Computer</option>
+                <option value="MOBILE">Mobile</option>
+                <option value="ELECTRONIC">Electronic</option>
+                <option value="FURNITURE">Furniture</option>
+                <option value="OTHER">Other</option>
               </select>
             </label>
             <label className='sell-product-labels'>
