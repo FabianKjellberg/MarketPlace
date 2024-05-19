@@ -6,12 +6,21 @@ import Burger from '../Burger/Burger.js'
 import logo from '../../resources/images/marketplace_logo.png'
 import { useCart } from '../../utilities/CartProvider';
 import { useAuthentication } from '../../utilities/AuthenticationProvider';
+import SearchBar from '../SearchBar/SearchBar.js';
+import { useSearch } from '../SearchBar/SearchContext.js'
 
 function Header() {
   
     const { itemCount } = useCart();
     const { loggedIn, logIn, logOut } = useAuthentication();
     const [nav, setNav] = useState('sellproduct')
+    
+    const { setSearchParams } = useSearch();
+
+    const handleSearch = (searchTerm, searchBy) => {
+        setSearchParams({ term: searchTerm, by: searchBy });
+        
+    };
         
     return (
     <>
@@ -19,6 +28,7 @@ function Header() {
         
         <div className="header-burger">
         <Link to="/"><img className="logo-name" src={logo}></img></Link>
+        <SearchBar onSearch={handleSearch}/> 
             <Burger >
                 
                 <div className='header'>

@@ -5,6 +5,7 @@ import { useCart } from '../../utilities/CartProvider';
 import CurrentListingManager from '../../utilities/CurrentListingManager.js';
 import { useAuthentication } from '../../utilities/AuthenticationProvider';
 import SubscribeCategory from '../../utilities/SubscribeCategory.js';
+import { useSearch } from '../../components/SearchBar/SearchContext.js'
 
 function HomePage() {
   const { items } = useCart();
@@ -13,6 +14,7 @@ function HomePage() {
   const [formData, setFormData] = useState({ category: '', product: '', minPrice: '', maxPrice: '' });
   const currentListingManager = new CurrentListingManager("http://localhost:8080");
 
+  const { searchParams } = useSearch();
   //Arthur
   const subscribeToCategory = new SubscribeCategory("http://localhost:8080/");
   const { token } = useAuthentication();
@@ -21,11 +23,35 @@ function HomePage() {
     async function loadProducts() {
       const productsData = await currentListingManager.RetrieveListings();
       setProducts(productsData);
-      setFilteredProducts(productsData); // Initialisera filteredProducts med alla produkter
+      //setFilteredProducts(productsData); // Initialisera filteredProducts med alla produkter
+      filterProducts(productsData); 
     }
 
     loadProducts();
-  }, []);
+  }, [searchParams]);
+
+  function filterProducts(productsData) {
+    let filtered = productsData;
+
+    if (!searchParams.term || searchParams.term.trim() === '') {
+      setFilteredProducts(productsData);
+      return;
+    }
+
+    if (searchParams.by === 'Name' && searchParams.term !== '') {
+      filtered = filtered.filter(product => product.name.toLowerCase().includes(searchParams.term.toLowerCase()));
+    }
+    if (searchParams.by === 'Condition' && searchParams.term !== '') {
+      filtered = filtered.filter(product => product.condition.toLowerCase().includes(searchParams.term.toLowerCase()));
+    }
+    if (searchParams.by === 'PriceRange' && searchParams.term !== '') {
+      const [minPrice, maxPrice] = searchParams.term.split('-').map(Number);
+      filtered = filtered.filter(product => product.price >= minPrice && product.price <= maxPrice);
+    }
+
+    setFilteredProducts(filtered);
+  }
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,59 +90,7 @@ function HomePage() {
         <div className='homepage-listing-wrapper'>
           <div className='header-with-search'>
             <h1>Current Listings</h1>
-            <hr style={{ border: 'none', height: '1px', backgroundColor: '#333', marginBottom: '20px', marginRight: '25px' }} />
-            <div className='search-by'>
-              <div className='search-section'>
-                <p>Search by:</p>
-                <label>
-                  Product
-                  <input
-                    type="text"
-                    name="product"
-                    value={formData.product}
-                    onChange={handleChange}
-                    placeholder="Search products"
-                    className="search-input"
-                  />
-                </label>
-                <label>
-                  Category
-                  <select
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                    className="category-select"
-                  >
-                    <option value="">Select Category</option>
-                    <option value="COMPUTER">Computer</option>
-                    <option value="MOBILE">Mobile</option>
-                    <option value="ELECTRONIC">Electronic</option>
-                    <option value="FURNITURE">Furniture</option>
-                    <option value="OTHER">Other</option>
-                  </select>
-                </label>
-                <label>
-                  Price Range
-                  <div className="price-range">
-                    <input
-                      type="number"
-                      name="minPrice"
-                      value={formData.minPrice}
-                      onChange={handleChange}
-                      placeholder="Min Price"
-                      className="price-input"
-                    />
-                    <input
-                      type="number"
-                      name="maxPrice"
-                      value={formData.maxPrice}
-                      onChange={handleChange}
-                      placeholder="Max Price"
-                      className="price-input"
-                    />
-                  </div>
-                </label>
-              </div>
+            
             </div>
           </div>
           <div className='homepage-listings'>
@@ -127,7 +101,7 @@ function HomePage() {
           </div>
         </div>
         <button onClick={() => console.log(products)}>hej</button>
-      </div>
+      
 
       <form className='category-form' onSubmit={handleSubmit}>
         <label className='homepage'>
