@@ -94,60 +94,6 @@ function HomePage() {
           <div className='header-with-search'>
             <h1>Current Listings</h1>
             
-            <hr style={{ border: 'none', height: '1px', backgroundColor: '#333', marginBottom: '20px', marginRight: '25px' }} />
-            <div className='search-by'>
-              <div className='search-section'>
-                <p>Search by:</p>
-                <label>
-                  Product
-                  <input
-                    type="text"
-                    name="product"
-                    value={formData.product}
-                    onChange={handleChange}
-                    placeholder="Search products"
-                    className="search-input"
-                  />
-                </label>
-                <label>
-                  Category
-                  <select
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                    className="category-select"
-                  >
-                    <option value="">Select Category</option>
-                    <option value="COMPUTER">Computer</option>
-                    <option value="MOBILE">Mobile</option>
-                    <option value="ELECTRONIC">Electronic</option>
-                    <option value="FURNITURE">Furniture</option>
-                    <option value="OTHER">Other</option>
-                  </select>
-                </label>
-                <label>
-                  Price Range
-                  <div className="price-range">
-                    <input
-                      type="number"
-                      name="minPrice"
-                      value={formData.minPrice}
-                      onChange={handleChange}
-                      placeholder="Min Price"
-                      className="price-input"
-                    />
-                    <input
-                      type="number"
-                      name="maxPrice"
-                      value={formData.maxPrice}
-                      onChange={handleChange}
-                      placeholder="Max Price"
-                      className="price-input"
-                    />
-                  </div>
-                </label>
-              </div>
-            </div>
           </div>
           <div className='homepage-listings'>
             {filteredProducts.map((product) => {
