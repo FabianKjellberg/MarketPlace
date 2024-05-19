@@ -15,13 +15,17 @@ function History() {
 
   useEffect(() => {
     async function loadPurchases() {
-      const purchases = await getHistoryManager.RetrieveHistoryPurchases(token);
-      setPurchaseHistory(purchases);
+      await getHistoryManager.RetrieveHistoryPurchases(token).then((response) => {
+        console.log(response)
+        setPurchaseHistory(response)
+      });
     }
 
     async function loadSales() {
-      const sales = await getHistoryManager.RetrieveHistorySales(token);
-      setSalesHistory(sales);
+      await getHistoryManager.RetrieveHistorySales(token).then((response) => {
+        console.log(response)
+        setSalesHistory(response)
+      });
     }
 
 

@@ -26,6 +26,35 @@ class OfferManager {
             });
         return returnData;
     }
+
+    async acceptOffer(productId, token) {
+        const returnData = await this.axiosInstance.put(`offer/acceptOffer/${productId}`, {headers: {
+            Authorization: `Bearer ${token}`
+        },})
+            .then(response => {
+                return response.data; 
+            })
+            .catch(error => {
+                console.error('Error retrieving listings', error);
+                return [];
+            });
+        return returnData;
+    }
+
+    async rejectOffer(productId, token) {
+        const returnData = await this.axiosInstance.put(`offer/rejectOffer/${productId}`, {headers: {
+            Authorization: `Bearer ${token}`
+        },})
+            .then(response => {
+                return response.data; 
+            })
+            .catch(error => {
+                console.error('Error retrieving listings', error);
+                return [];
+            });
+        return returnData;
+    }
+
 }
 
 export default OfferManager;
