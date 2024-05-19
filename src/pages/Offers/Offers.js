@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ProductOffer from '../../components/ProductOffer/ProductOffer.js'
 import { useAuthentication } from '../../utilities/AuthenticationProvider.js';
 import OfferManager from '../../utilities/OfferManager.js'
+import './Offers.css'
 
 function Offers() {
 
@@ -25,6 +26,10 @@ function Offers() {
     }
   }, [token]);
 
+  const removeProduct = (productId) => {
+    setProductOffers(productOffers.filter(product => product.id !== productId));
+  };
+
   return (
     <>
       <div className='profile-user-listings'>
@@ -35,6 +40,7 @@ function Offers() {
           {productOffers.map((product) => (
             <ProductOffer
               product={product}
+              removeSelf={() => removeProduct(product.id)}
             />
           ))}
         </div>

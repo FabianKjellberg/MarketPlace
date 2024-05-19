@@ -32,6 +32,7 @@ function ProductListing(props) {
                     <p>Production Year: {product.yearOfProduction}</p>
                     <p>Color: {product.color}</p>
                     <p>Condition: {product.condition}</p>
+                    <p>Category: {product.category}</p>
                     <p>Seller: <b>{product?.sellerUsername ? product.sellerUsername : "DEFAULT"}</b></p>
                 </CollapsableMenu>
             </div>
