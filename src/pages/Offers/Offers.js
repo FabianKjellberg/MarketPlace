@@ -4,36 +4,42 @@ import { useAuthentication } from '../../utilities/AuthenticationProvider.js';
 import OfferManager from '../../utilities/OfferManager.js'
 
 function Offers() {
-  
-  const offerManager = new OfferManager("http://localhost:8080");  
-  
+
+
   const [productOffers, setProductOffers] = useState([]);
-    const {token} = useAuthentication();
+  const { token } = useAuthentication();
+  const offerManager = new OfferManager("http://localhost:8080");
 
-    useEffect(() => {
-      async function loadOffers() {
-        const products = await offerManager.getOffers(token);
-        setProductOffers(products);
-      }
-      loadOffers();
-    },[])  
+  const fetchOffers = async () => {
+    try {
+      const products = await offerManager.getOffers(token);
+      setProductOffers(products);
+    } catch (error) {
+      console.error('Error retrieving offers', error);
+    }
+  };
 
-    return (
-      <>
-        <div className='profile-user-listings'>
-            <h1>My Offers</h1>
-            <p>Here you can Accept or Reject offers people have made on your items. If this page is empty it means your items are still available to buy on current listings.</p>
-            <hr style={{ border: 'none', height: '1px', backgroundColor: '#333', marginBottom: '20px', marginRight: '25px' }} />
-            <div className='profile-my-listings'>
-              {productOffers.map((product) => (
-                <ProductOffer 
-                  product={product}
-                />
-              ))}
-            </div>
+  useEffect(() => {
+    if (token) {
+      fetchOffers();
+    }
+  }, [token]);
+
+  return (
+    <>
+      <div className='profile-user-listings'>
+        <h1>My Offers</h1>
+        <p>Here you can Accept or Reject offers people have made on your items. If this page is empty it means your items are still available to buy on current listings.</p>
+        <hr style={{ border: 'none', height: '1px', backgroundColor: '#333', marginBottom: '20px', marginRight: '25px' }} />
+        <div className='profile-my-offers'>
+          {productOffers.map((product) => (
+            <ProductOffer
+              product={product}
+            />
+          ))}
         </div>
-      </>
-    );
-  }
-  
-  export default Offers;
+      </div>
+    </>
+  );
+};
+export default Offers;

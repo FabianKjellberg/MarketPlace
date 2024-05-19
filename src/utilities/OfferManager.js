@@ -13,8 +13,8 @@ class OfferManager {
         });
     }
 
-    getOffers(token) {
-        const returnData = this.axiosInstance.get('/offer/getOffers', {headers: {
+    async getOffers(token) {
+        const returnData = await this.axiosInstance.get('/offer/getOffers', {headers: {
             Authorization: `Bearer ${token}`
         },})
             .then(response => {

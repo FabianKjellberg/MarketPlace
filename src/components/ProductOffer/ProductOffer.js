@@ -1,11 +1,15 @@
 import ProductListing from '../ProductListing/ProductListing';
 import './ProductOffer.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 function ProductOffer(props) {
 
-    const [product, setProduct] = useState(props.product)
+    const [product, setProduct] = useState(props.product)
+
+    useEffect(() => {
+        setProduct(props.product)
+    }, [props.product]);
     
     return (
     <>
@@ -15,7 +19,7 @@ function ProductOffer(props) {
                 product={product}
             />
             <div className='product-offer-buttons'>
-                <p>{product?.buyerUsername ? product.buyer.username : "DEFAULT" } wants to purchase your item</p>
+                <p>{product.buyerUsername ? product.buyer.username : "DEFAULT" } wants to purchase your item</p>
                 <div className='product-offer-buttons-wrapper'>
                     <button>Accept</button>
                     <button>Reject</button>
