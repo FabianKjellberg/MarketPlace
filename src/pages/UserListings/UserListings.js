@@ -18,13 +18,11 @@ function UserListings() {
       const productsData = await userListingManager.RetrieveListings(token);
       setProducts(productsData);
     }
-
-
     loadProducts();
   },[])  
     
   const removeProduct = (productId) => {
-    deleteProductManager.deleteProduct({id:productId})
+    deleteProductManager.DeleteProduct(productId, token)
     setProducts(ownProducts.filter(product => product.id !== productId));
   };
 
@@ -32,6 +30,8 @@ function UserListings() {
       <>
         <div className='profile-user-listings'>
             <h1>My Listings</h1>
+            <p>This page displays all of your current listings that havent gotten any offers on them yet. If this page is empty it means you currently have no open listings.</p>
+            <hr style={{ border: 'none', height: '1px', backgroundColor: '#333', marginBottom: '20px', marginRight: '25px' }} />
             <div className='profile-my-listings'>
               {ownProducts.map((product) => (
                 <ProductListing 

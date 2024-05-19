@@ -5,7 +5,7 @@ import CollapsableMenu from '../CollapsableMenu/CollapsableMenu';
 import { useCart } from '../../utilities/CartProvider';
 
 function ProductListing(props) {
-    const [product, setProduct] = useState(props.product || { id: 1436346236462462346346, name: 'DEFAULT', price: 99.99, yearOfProduction: 'DEFAULT', color: 'DEFAULT', condition: 'DEFAULT' })
+    const [product, setProduct] = useState(props.product || { id: 1436346236462462346346, name: 'DEFAULT', price: 99.99, yearOfProduction: 'DEFAULT', color: 'DEFAULT', condition: 'DEFAULT', seller:{username:'DEFAULT'} , buyer:{username:'DEFAULT'} })
     const [inShoppingCart, setInshoppingCart] = useState(props.inShoppingCart || false);
     const [isBuyable, setIsBuyable] = useState(props.isBuyable || false);
     const [isRemovable, setIsRemovable] = useState(props.isRemovable || false);
@@ -32,7 +32,7 @@ function ProductListing(props) {
                     <p>Production Year: {product.yearOfProduction}</p>
                     <p>Color: {product.color}</p>
                     <p>Condition: {product.condition}</p>
-                    <p>Seller: <b>{product?.seller?.username}</b></p>
+                    <p>Seller: <b>{product?.sellerUsername ? product.sellerUsername : "DEFAULT"}</b></p>
                 </CollapsableMenu>
             </div>
             <div className='product-listing-price-button'>

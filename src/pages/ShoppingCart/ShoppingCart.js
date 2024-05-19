@@ -19,7 +19,7 @@ function ShoppingCart() {
         if(!loggedIn) navigate('/login?redirect=shoppingcart')
         else{
             createOfferManager.CreateOffer(items.map(item => item.id || 'defaultId'), token).then((response)=>{
-                if(response === "Order submitted")
+                if(response !== "error")
                 resetCart();
             })
         }

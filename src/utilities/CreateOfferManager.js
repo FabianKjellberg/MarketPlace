@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class CreateListingManager {
+class CreateOfferManager {
 
     constructor(apiUrl) {
         
@@ -13,8 +13,9 @@ class CreateListingManager {
         });
     }
 
-    CreateOffer(productIDs, token) {
-        const returnData = this.axiosInstance.put('/product/submitProductOrder', {id:productIDs} ,{headers: {
+    async CreateOffer(productIDs, token) {
+        console.log(productIDs);
+        const returnData = await this.axiosInstance.put('/product/submitProductOrder', {id:productIDs} ,{headers: {
             Authorization: `Bearer ${token}`
         },})
             .then(response => {
@@ -29,4 +30,4 @@ class CreateListingManager {
         return returnData;
     }
 }
-export default CreateListingManager;
+export default CreateOfferManager;
