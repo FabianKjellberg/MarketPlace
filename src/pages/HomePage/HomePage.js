@@ -100,7 +100,6 @@ function HomePage() {
             })}
           </div>
         </div>
-        
       
 
         <form className='category-form' onSubmit={handleSubmit}>
