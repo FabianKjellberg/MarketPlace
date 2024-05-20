@@ -61,6 +61,15 @@ function SearchBar({ onSearch }) {
             onChange={handleInputChange}
           />
         </>
+      ) : searchBy === 'Condition' ? (
+        <select className="search-input" value={searchTerm} onChange={handleInputChange}>
+          <option value="">Select Condition</option>
+          <option value="new">New</option>
+          <option value="used-very-good">Used - Very good</option>
+          <option value="used-good">Used - Good</option>
+          <option value="used-fair">Used - Fair</option>
+          <option value="used-bad">Used - Bad</option>
+        </select>
       ) : (
         <input
           type="text"
