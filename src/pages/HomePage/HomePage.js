@@ -100,7 +100,7 @@ function HomePage() {
             })}
           </div>
         </div>
-        <button onClick={() => console.log(products)}>hej</button>
+        
       
 
         <form className='category-form' onSubmit={handleSubmit}>
