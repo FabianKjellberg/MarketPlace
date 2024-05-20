@@ -1,41 +1,62 @@
 import './SellProduct.css';
 import { useState } from 'react';
-import { useNavigate , useLocation} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import CreateListingManager from '../../utilities/CreateListingManager';
 import { useAuthentication } from '../../utilities/AuthenticationProvider';
 
 function SellProduct() {
- 
-
   const navigate = useNavigate();
-
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 20 }, (v, i) => currentYear - i);
   const createListingManager = new CreateListingManager("http://localhost:8080/");
   const { token } = useAuthentication();
-  
+
   const [formData, setFormData] = useState({
     name: '',
     price: '',
     color: '',
     category: '',
-    yearOfProduction: currentYear, 
+    yearOfProduction: currentYear,
     condition: ''
   });
 
-  const handleChange = ((e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-  });
+  const [showPopup, setShowPopup] = useState(false);
 
-  const handleSubmit = ((event) =>{
-        event.preventDefault();
-        
-        createListingManager.CreateListing(formData, token);
-  });
-  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    createListingManager.CreateListing(formData, token)
+      .then(() => {
+        setShowPopup(true);
+        setFormData({
+          name: '',
+          price: '',
+          color: '',
+          category: '',
+          yearOfProduction: currentYear,
+          condition: ''
+        });
+      })
+      .catch((error) => {
+        console.error("Error creating listing:", error);
+      });
+  };
+
   return (
     <>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <p>Your product has been listed!</p>
+            <button onClick={() => setShowPopup(false)}>Close</button>
+          </div>
+        </div>
+      )}
       <div className='sell-product'>
         <div className='sell-product-window'>
           <div className='sell-product-greeting'>
@@ -107,7 +128,7 @@ function SellProduct() {
                 value={formData.yearOfProduction}
                 onChange={handleChange}
                 required
-                >
+              >
                 {years.map(year => (
                   <option key={year} value={year}>{year}</option>
                 ))}
@@ -126,14 +147,14 @@ function SellProduct() {
                 <option value="used-very-good">Used - Very good</option>
                 <option value="used-good">Used - Good</option>
                 <option value="used-fair">Used - Fair</option>
-                <option value="used-fair">Used - Bad</option>
+                <option value="used-bad">Used - Bad</option>
               </select>
             </label>
 
             <div className='sell-product-button'>
               <button type="submit">List Product</button>
             </div>
-            </form>
+          </form>
         </div>
       </div>
     </>
