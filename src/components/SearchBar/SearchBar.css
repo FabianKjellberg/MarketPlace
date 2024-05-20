@@ -17,7 +17,7 @@
   
 }
 
-.search-input, .search-select, button {
+.search-input, .search-select button {
   height: 35px;
   padding: 0 10px;
 }
@@ -39,7 +39,7 @@
   cursor: pointer;
 }
 
-button {
+.search-bar-button button{
   background-color: var(--flax); 
   border: none;             
   color: var(--indigo-dye);
@@ -50,7 +50,7 @@ button {
   outline: none;             
 }
 
-button:hover {
+.search-bar-button button:hover {
   background-color: var(--indigo-dye); 
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
     color: var(--flax);

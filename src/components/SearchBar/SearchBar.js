@@ -41,6 +41,7 @@ function SearchBar({ onSearch }) {
 
 
   return (
+    <>
     <form onSubmit={handleSubmit} className='search-bar'>
       {searchBy === 'PriceRange' ? (
         <>
@@ -61,31 +62,34 @@ function SearchBar({ onSearch }) {
             onChange={handleInputChange}
           />
         </>
-      ) : searchBy === 'Condition' ? (
-        <select className="search-input" value={searchTerm} onChange={handleInputChange}>
-          <option value="">Select Condition</option>
-          <option value="new">New</option>
-          <option value="used-very-good">Used - Very good</option>
-          <option value="used-good">Used - Good</option>
-          <option value="used-fair">Used - Fair</option>
-          <option value="used-bad">Used - Bad</option>
+        ) : searchBy === 'Condition' ? (
+          <select className="search-input" value={searchTerm} onChange={handleInputChange}>
+            <option value="">Select Condition</option>
+            <option value="new">New</option>
+            <option value="used-very-good">Used - Very good</option>
+            <option value="used-good">Used - Good</option>
+            <option value="used-fair">Used - Fair</option>
+            <option value="used-bad">Used - Bad</option>
+          </select>
+        ) : (
+          <input
+            type="text"
+            placeholder={`Search by ${searchBy}...`}
+            className="search-input"
+            value={searchTerm}
+            onChange={handleInputChange}
+          />
+        )}
+        <select className="search-select" value={searchBy} onChange={handleSearchByChange}>
+          <option value="Name">name</option>
+          <option value="PriceRange">price</option>
+          <option value="Condition">condition</option>
         </select>
-      ) : (
-        <input
-          type="text"
-          placeholder={`Search by ${searchBy}...`}
-          className="search-input"
-          value={searchTerm}
-          onChange={handleInputChange}
-        />
-      )}
-      <select className="search-select" value={searchBy} onChange={handleSearchByChange}>
-        <option value="Name">name</option>
-        <option value="PriceRange">price</option>
-        <option value="Condition">condition</option>
-      </select>
-      <button type="submit">Search</button>
-    </form>
+        <div className='search-bar-button'>
+          <button className='search-bar-button' type="submit">Search</button>
+        </div>
+      </form>
+    </>
   );
 }
 

@@ -8,6 +8,8 @@ function History() {
   
   const [purchaseHistory, setPurchaseHistory] = useState([])
   const [salesHistory, setSalesHistory] = useState([])
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   const { token } = useAuthentication();
 
@@ -40,10 +42,10 @@ function History() {
         <hr style={{ border: 'none', height: '1px', backgroundColor: '#333', marginBottom: '20px', marginRight: '25px' }} />
         <div class="form-container">
           <form>
-              <label for="from">From:</label>
-              <input type="date" id="from" name="from"/>
-              <label for="to">      To:</label>
-              <input type="date" id="to" name="to"/>
+            <label htmlFor="from">From:</label>
+            <input type="date" id="from" name="from" value={fromDate} onChange={e => setFromDate(e.target.value)} />
+            <label htmlFor="to">To:</label>
+            <input type="date" id="to" name="to" value={toDate} onChange={e => setToDate(e.target.value)} />
           </form>
         </div>
         <div className="history-tables">
@@ -52,6 +54,8 @@ function History() {
             <HistoryTable 
               buyer={true}
               products={purchaseHistory}
+              fromDate={fromDate}
+              toDate={toDate}
             />
           </div>
           <div className="history-tables-table">
@@ -59,6 +63,8 @@ function History() {
               <HistoryTable 
               buyer={false}
               products={salesHistory}
+              fromDate={fromDate}
+              toDate={toDate}
             />
           </div>
         </div>
