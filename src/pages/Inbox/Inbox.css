@@ -1,0 +1,40 @@
+.inbox-page {
+    padding: 20px;
+  }
+  
+  .watch-category-form {
+    margin-bottom: 20px;
+  }
+  
+  .watch-category-labels p {
+    margin-bottom: 5px;
+  }
+  
+  .watch-category-labels select {
+    padding: 5px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .inbox-message-wrapper {
+    margin-top: 20px;
+  }
+  
+  .inbox-message {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  .inbox-message p {
+    margin: 10px 0;
+    font-size: 1.2em;
+  }
+  
+  
+  .inbox-message strong {
+    color: #007bff;
+  }
+  

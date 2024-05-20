@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useInbox } from '../../utilities/InboxContext'; 
-import ProductListing from '../../components/ProductListing/ProductListing.js';
-import { useCart } from '../../utilities/CartProvider'; 
-import CurrentListingManager from '../../utilities/CurrentListingManager.js'; 
+import { useInbox } from '../../utilities/InboxContext';
+import { useCart } from '../../utilities/CartProvider';
+import CurrentListingManager from '../../utilities/CurrentListingManager.js';
+import './Inbox.css';
 
 function Inbox() {
   const { items } = useCart();
@@ -33,7 +33,7 @@ function Inbox() {
 
     // Filtrera produkter baserat på vald kategori
     if (value === '') {
-      //setFilteredProducts(products); // Visa alla produkter om ingen kategori är vald
+      setFilteredProducts(products); // Visa alla produkter om ingen kategori är vald
       setInboxCount(products.length); // Uppdatera inboxCount
     } else {
       const filtered = products.filter(product => product.category === value);
@@ -43,46 +43,39 @@ function Inbox() {
   };
 
   return (
-    <>
-      <div>
-        <form className="watch-category-form" onSubmit={handleSubmit}>
-          <label className='watch-category-labels'>
-            <p>Add to watch list</p>
-            <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Category</option>
-              <option value="COMPUTER">Computer</option>
-              <option value="MOBILE">Mobile</option>
-              <option value="ELECTRONIC">Electronic</option>
-              <option value="FURNITURE">Furniture</option>
-              <option value="OTHER">Other</option>
-            </select>
-          </label>
-        </form>
-        <div className='homepage'>
-          <div className='homepage-listing-wrapper'>
-            <h1>Current Listings</h1>
-            <div className='homepage-listings'>
-              {filteredProducts.map((product) => {
-                const isInCart = items.some(item => item.id === product.id);
-                return !isInCart && (
-                  <ProductListing 
-                    key={product.id} 
-                    product={product} 
-                    inShoppingCart={false} 
-                    isBuyable={true} 
-                  />
-                );
-              })}
-            </div>
+    <div className="inbox-page">
+      <form className="watch-category-form" onSubmit={handleSubmit}>
+        <label className='watch-category-labels'>
+          <p>Add to watch list</p>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Category</option>
+            <option value="COMPUTER">Computer</option>
+            <option value="MOBILE">Mobile</option>
+            <option value="ELECTRONIC">Electronic</option>
+            <option value="FURNITURE">Furniture</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </label>
+      </form>
+      <div className="inbox-message-wrapper">
+        <h1>Inbox</h1>
+        {formData.category && (
+          <div className="inbox-message">
+            <p>
+              You are watching the <strong>{formData.category}</strong> category.
+            </p>
+            <p>
+              There are <strong>{filteredProducts.length}</strong> products in this category.
+            </p>
           </div>
-        </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 
