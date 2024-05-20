@@ -123,7 +123,7 @@ function SellProduct() {
               >
                 <option value="">Select Condition</option>
                 <option value="new">New</option>
-                <option value="used-like-new">Used - Like New</option>
+                <option value="used-very-good">Used - Very good</option>
                 <option value="used-good">Used - Good</option>
                 <option value="used-fair">Used - Fair</option>
                 <option value="used-fair">Used - Bad</option>
