@@ -103,27 +103,29 @@ function HomePage() {
         <button onClick={() => console.log(products)}>hej</button>
       
 
-      <form className='category-form' onSubmit={handleSubmit}>
-        <label className='homepage'>
-          <p>Subscribe to Category</p>
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Category</option>
-            <option value="COMPUTER">Computer</option>
-            <option value="MOBILE">Mobile</option>
-            <option value="ELECTRONIC">Electronic</option>
-            <option value="FURNITURE">Furniture</option>
-            <option value="OTHER">Other</option>
-          </select>
-        </label>
-        <div className='submit'>
-          <button type='submit'>Subscribe</button>
-        </div>
-      </form>
+        <form className='category-form' onSubmit={handleSubmit}>
+          <div className='category-box'>
+            <label>
+              <p>Subscribe to Category</p>
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Category</option>
+                <option value="COMPUTER">Computer</option>
+                <option value="MOBILE">Mobile</option>
+                <option value="ELECTRONIC">Electronic</option>
+                <option value="FURNITURE">Furniture</option>
+                <option value="OTHER">Other</option>
+              </select>
+            </label>
+            <div className='submit'>
+              <button type='submit'>Subscribe</button>
+            </div>
+          </div>
+        </form>
     </>
   );
 }
