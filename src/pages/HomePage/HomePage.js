@@ -6,6 +6,7 @@ import CurrentListingManager from '../../utilities/CurrentListingManager.js';
 import { useAuthentication } from '../../utilities/AuthenticationProvider';
 import SubscribeCategory from '../../utilities/SubscribeCategory.js';
 import { useSearch } from '../../components/SearchBar/SearchContext.js'
+import UnsubscribeCategory from '../../utilities/UnsubscribeManager.js';
 
 function HomePage() {
   const { items } = useCart();
@@ -17,6 +18,7 @@ function HomePage() {
   const { searchParams } = useSearch();
   //Arthur
   const subscribeToCategory = new SubscribeCategory("http://localhost:8080/");
+  const unsubscribeToCategory = new UnsubscribeCategory("http://localhost:8080/");
   const { token } = useAuthentication();
 
   useEffect(() => {
@@ -53,6 +55,7 @@ function HomePage() {
   }
 
   const unsubscribe = () => {
+    unsubscribeToCategory.UnsubscribeFromCategory({ category: formData.category }, token);
   
   }
   
@@ -126,7 +129,7 @@ function HomePage() {
             </label>
             <div className='submit'>
               <button type='submit'>Subscribe</button>
-              <button onClick={()=>unsubscribe}>Unsubscribe</button>
+              <button onClick={()=>unsubscribe()}>Unsubscribe</button>
             </div>
           </div>
         </form>
