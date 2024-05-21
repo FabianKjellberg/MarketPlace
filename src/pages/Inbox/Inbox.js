@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { useInbox } from '../../utilities/InboxContext';
 import { useCart } from '../../utilities/CartProvider';
 import CurrentListingManager from '../../utilities/CurrentListingManager.js';
+import NotificationManager from '../../utilities/NotificationManager.js';
+import { useAuthentication } from '../../utilities/AuthenticationProvider';
 import './Inbox.css';
 
 function Inbox() {
   const { items } = useCart();
+  const {token} = useAuthentication();
   const { setInboxCount } = useInbox();
+  const [messages, setMessages] = useState([]); // Create state for meddelanden
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [formData, setFormData] = useState({ category: '' });
@@ -18,7 +22,14 @@ function Inbox() {
       setProducts(productsData);
       setFilteredProducts(productsData); // Initialisera filteredProducts med alla produkter
       setInboxCount(productsData.length); // Uppdatera inboxCount när produkterna laddas
-    }
+    };
+
+    const notificationManager = new NotificationManager("http://localhost:8080");
+    notificationManager.GetNotifications(token).then((messages) => {
+      setMessages(messages);
+    }).catch((error) => {
+      console.error("Error retrieving notifications:", error);
+    });
 
     loadProducts();
   }, [setInboxCount]);
@@ -74,6 +85,18 @@ function Inbox() {
             </p>
           </div>
         )}
+      </div>
+      <div className="inbox-message-wrapper">
+        <h1>Notifications</h1>
+        <div className='inbox-message'>
+          {messages.map((message, index) => (
+            <div key={index}>
+              <p key={index}>{message.content}</p>
+            </div>
+          ))}
+
+        </div>
+
       </div>
     </div>
   );

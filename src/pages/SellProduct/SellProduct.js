@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CreateListingManager from '../../utilities/CreateListingManager';
 import { useAuthentication } from '../../utilities/AuthenticationProvider';
+import NotificationManager from '../../utilities/NotificationManager';
 
 function SellProduct() {
   const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 20 }, (v, i) => currentYear - i);
   const createListingManager = new CreateListingManager("http://localhost:8080/");
+  const notificationManager = new NotificationManager("http://localhost:8080/");
   const { token } = useAuthentication();
 
   const [formData, setFormData] = useState({
@@ -44,6 +46,10 @@ function SellProduct() {
       })
       .catch((error) => {
         console.error("Error creating listing:", error);
+      });
+
+      notificationManager.SendNotifications(formData, token).catch((error) => {
+        console.error("Error sending notifications:", error);
       });
   };
 
