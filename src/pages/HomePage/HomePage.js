@@ -51,6 +51,10 @@ function HomePage() {
 
     setFilteredProducts(filtered);
   }
+
+  const unsubscribe = () => {
+  
+  }
   
 
   const handleChange = (e) => {
@@ -122,6 +126,7 @@ function HomePage() {
             </label>
             <div className='submit'>
               <button type='submit'>Subscribe</button>
+              <button onClick={()=>unsubscribe}>Unsubscribe</button>
             </div>
           </div>
         </form>
